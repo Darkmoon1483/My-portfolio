@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Phakkhawat Kromkhuntod</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #6a1b9a;      /* สีหลัก (ม่วง มช.) */
+            --primary-dark: #4a0072;
+            --accent: #ffd740;       /* สีเหลืองตัดให้เด่น */
+            --text-dark: #333;
+            --text-light: #666;
+            --bg-light: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Sarabun', sans-serif;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            padding-top: 76px;
+        }
+
+        h1, h2, h3, h4, h5, h6, .nav-link, .btn {
+            font-family: 'Prompt', sans-serif;
+        }
+
+        /* --- Navbar --- */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            padding: 15px 0;
+        }
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary) !important;
+            font-size: 1.5rem;
+        }
+        .nav-link {
+            font-weight: 500;
+            color: var(--text-dark) !important;
+            margin: 0 10px;
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width .3s;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .btn-primary-custom {
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50px;
+            padding: 10px 30px;
+            transition: all 0.3s;
+            border: none;
+        }
+        .btn-primary-custom:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(106, 27, 154, 0.3);
+        }
+
+        /* --- Hero Section --- */
+        header.hero {
+            background: linear-gradient(135deg, #f3e5f5 0%, #ffffff 100%);
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-img-box {
+            position: relative;
+            z-index: 2;
+        }
+        .hero-img {
+            width: 350px;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 30px;
+            box-shadow: 20px 20px 0px rgba(106, 27, 154, 0.1);
+            transition: transform 0.3s;
+        }
+        .hero-img:hover {
+            transform: scale(1.02);
+        }
+        .hero-bg-shape {
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 500px;
+            height: 500px;
+            background: var(--primary);
+            opacity: 0.05;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        /* --- Section Titles --- */
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        .section-header .line {
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        /* --- Cards & Boxes --- */
+        .feature-box {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            height: 100%;
+            border-bottom: 3px solid transparent;
+        }
+        .feature-box:hover {
+            transform: translateY(-10px);
+            border-bottom: 3px solid var(--primary);
+        }
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background: #f3e5f5;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        /* --- Timeline --- */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            border-left: 2px solid #ddd;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -36px;
+            top: 5px;
+            width: 14px;
+            height: 14px;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+
+        /* --- Skills Table Custom --- */
+        .skill-table-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        .table thead {
+            background: var(--primary);
+            color: white;
+        }
+        .badge-custom {
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 8px;
+        }
+
+        /* --- Contact --- */
+        .contact-section {
+            background: #222;
+            color: white;
+            padding: 80px 0;
+        }
+        .social-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+        .social-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-code me-2"></i>Pakkawat Gromkuntoad</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="#home">หน้าแรก</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">ประวัติ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">ทักษะ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#portfolio">ผลงาน</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#activity">กิจกรรม</a></li>
+                    <li class="nav-item ms-lg-3">
+                        <a href="#contact" class="btn btn-primary-custom">ติดต่อฉัน</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header id="home" class="hero d-flex align-items-center">
+        <div class="hero-bg-shape"></div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 order-2 order-lg-1" data-aos="fade-right">
+                    <img width="90%"scr=""
+                    <span class="text-primary fw-bold text-uppercase ls-2">Portfolio</span>
+                    <h1 class="display-3 fw-bold mt-2 mb-3">นาย ภัควัฒน์ <br>กรมขุนทด</h1>
+                    <h3 class="h4 text-muted mb-4">นักเรียนห้องเรียนพิเศษ <span class="text-primary">Gifted Computer</span></h3>
+                    <p class="lead text-secondary mb-5">
+                        มุ่งมั่นที่จะนำเทคโนโลยีมาแก้ปัญหาและสร้างสรรค์นวัตกรรม <br>
+                        ด้วยความหลงใหลในการเขียนโปรแกรมและ Computer Science
+                    </p>
+                    <div class="d-flex gap-3">
+                        <a href="#portfolio" class="btn btn-primary-custom btn-lg shadow">ดูผลงานของผม</a>
+                        <a href="#skills" class="btn btn-outline-secondary btn-lg rounded-pill px-4">ทักษะที่มี</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 order-1 order-lg-2 text-center mb-5 mb-lg-0" data-aos="zoom-in">
+                    <div class="hero-img-box">
+                        <img src="https://via.placeholder.com/400x500?text=YOUR+IMAGE" alt="Phakkhawat Profile" class="hero-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="row gx-5">
+                <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-up">
+                    <div class="section-header text-start">
+                        <h2>ประวัติส่วนตัว</h2>
+                        <div class="line ms-0"></div>
+                    </div>
+                    <p class="text-muted mb-4">
+                        "ผมเป็นคนที่ชอบคอมพิวเตอร์กับเทคโนโลยีตั้งแต่เด็กครับ จึงเริ่มเรียนรู้และฝึกฝนตั้งแต่นั้นมา จนสอบเข้าเรียนต่อห้องพิเศษคอมพิวเตอร์เพื่อศึกษาเรื่องนี้อย่างจริงจัง"
+                    </p>
+                    
+                    <div class="row g-4">
+                        <div class="col-sm-6">
+                            <div class="feature-box p-3 border">
+                                <i class="fas fa-school text-primary fs-3 mb-2"></i>
+                                <h5 class="fw-bold">โรงเรียน</h5>
+                                <p class="mb-0 text-muted">บุญวาทย์วิทยาลัย</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="feature-box p-3 border">
+                                <i class="fas fa-graduation-cap text-primary fs-3 mb-2"></i>
+                                <h5 class="fw-bold">แผนการเรียน</h5>
+                                <p class="mb-0 text-muted">ม.4 Gifted Computer</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="feature-box p-3 border">
+                                <i class="fas fa-chart-line text-primary fs-3 mb-2"></i>
+                                <h5 class="fw-bold">เกรดเฉลี่ย</h5>
+                                <p class="mb-0 text-muted">GPA 3.30</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="feature-box p-3 border">
+                                <i class="fas fa-map-marker-alt text-primary fs-3 mb-2"></i>
+                                <h5 class="fw-bold">ที่อยู่</h5>
+                                <p class="mb-0 text-muted">ลำปาง, ประเทศไทย</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="fw-bold mb-4"><i class="fas fa-history text-warning me-2"></i>เส้นทางการศึกษา</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <span class="badge bg-primary mb-2">2566 - ปัจจุบัน</span>
+                            <h5 class="fw-bold">มัธยมศึกษาตอนปลาย (ม.4)</h5>
+                            <p class="text-muted">โรงเรียนบุญวาทย์วิทยาลัย<br>โครงการห้องเรียนพิเศษวิทยาศาสตร์-คอมพิวเตอร์ (Gifted Computer)</p>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="badge bg-secondary mb-2">2563 - 2565</span>
+                            <h5 class="fw-bold">มัธยมศึกษาตอนต้น</h5>
+                            <p class="text-muted">โรงเรียนบุญวาทย์วิทยาลัย<br>(ใส่ข้อมูลเพิ่มเติมถ้ามี เช่น ห้องเรียนปกติ หรือโครงการพิเศษ)</p>
+                        </div>
+                        
+                        <div class="bg-light p-4 rounded-3 mt-4 border-start border-4 border-primary">
+                            <h5 class="fw-bold text-primary">เป้าหมายในอนาคต (Future Goal)</h5>
+                            <p class="mb-0 fst-italic">"ศึกษาต่อคณะวิศวกรรมศาสตร์/วิทยาศาสตร์ สาขาคอมพิวเตอร์ มหาวิทยาลัยเชียงใหม่ เพื่อพัฒนาซอฟต์แวร์ที่เป็นประโยชน์ต่อสังคม"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="bg-light py-5">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>ทักษะและความสามารถ</h2>
+                <div class="line"></div>
+                <p class="text-muted mt-3">สรุปทักษะด้านเทคโนโลยีและการเขียนโปรแกรม</p>
+            </div>
+
+            <div class="row justify-content-center" data-aos="fade-up">
+                <div class="col-lg-10">
+                    <div class="skill-table-container bg-white">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="bg-primary text-white">
+                                <tr>
+                                    <th class="py-3 ps-4">หมวดทักษะ</th>
+                                    <th class="py-3">รายละเอียด</th>
+                                    <th class="py-3">เครื่องมือ / ภาษา</th>
+                                    <th class="py-3 text-center">ระดับ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="ps-4 fw-bold">Web Development</td>
+                                    <td>โครงสร้างและการจัดรูปแบบเว็บไซต์</td>
+                                    <td><span class="badge bg-danger">HTML5</span> <span class="badge bg-primary">CSS3</span></td>
+                                    <td class="text-center"><span class="badge bg-secondary">Basic</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="ps-4 fw-bold">Front-end</td>
+                                    <td>การโต้ตอบหน้าเว็บ</td>
+                                    <td><span class="badge bg-warning text-dark">JavaScript</span></td>
+                                    <td class="text-center"><span class="badge bg-secondary">Basic</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="ps-4 fw-bold">Back-end</td>
+                                    <td>การประมวลผลฝั่งเซิร์ฟเวอร์</td>
+                                    <td><span class="badge bg-info text-dark">PHP</span></td>
+                                    <td class="text-center"><span class="badge bg-secondary">Basic</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="ps-4 fw-bold">Programming</td>
+                                    <td>ตรรกะและการแก้ปัญหา</td>
+                                    <td><span class="badge bg-success">Python</span> <span class="badge bg-secondary">C++</span></td>
+                                    <td class="text-center"><span class="badge bg-primary">Intermediate</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="ps-4 fw-bold">Computer Science</td>
+                                    <td>การวิเคราะห์อัลกอริทึม</td>
+                                    <td>Algorithm, Flowchart</td>
+                                    <td class="text-center"><span class="badge bg-secondary">Basic</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="ps-4 fw-bold">Software/Tools</td>
+                                    <td>เครื่องมือที่ใช้พัฒนา</td>
+                                    <td>VS Code, Google Workspace</td>
+                                    <td class="text-center"><span class="badge bg-success">Proficient</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="py-5">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>ผลงานของฉัน (Portfolio)</h2>
+                <div class="line"></div>
+                <p class="text-muted mt-3">รวมโครงงานและแบบฝึกหัดที่ได้ลงมือทำจริง</p>
+            </div>
+
+            <div class="text-center mb-5" data-aos="fade-up">
+                <button class="btn btn-primary-custom mx-1">ทั้งหมด</button>
+                <button class="btn btn-outline-secondary rounded-pill mx-1">Web App</button>
+                <button class="btn btn-outline-secondary rounded-pill mx-1">Python</button>
+                <button class="btn btn-outline-secondary rounded-pill mx-1">IoT</button>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card h-100 border-0 shadow-sm overflow-hidden">
+                        <img src="https://via.placeholder.com/400x250?text=Web+Project" class="card-img-top" alt="Web Project">
+                        <div class="card-body p-4">
+                            <span class="badge bg-info text-dark mb-2">Web Development</span>
+                            <h5 class="card-title fw-bold">ระบบเว็บไซต์เบื้องต้น</h5>
+                            <p class="card-text text-muted small">พัฒนาเว็บไซต์ Responsive ด้วย HTML, CSS และ JavaScript เพื่อแสดงข้อมูลประชาสัมพันธ์...</p>
+                        </div>
+                        <div class="card-footer bg-white border-0 pb-4 ps-4">
+                            <a href="#" class="btn btn-sm btn-outline-primary rounded-pill">ดูรายละเอียด</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card h-100 border-0 shadow-sm overflow-hidden">
+                        <img src="https://via.placeholder.com/400x250?text=Python+Project" class="card-img-top" alt="Python Project">
+                        <div class="card-body p-4">
+                            <span class="badge bg-success mb-2">Python</span>
+                            <h5 class="card-title fw-bold">โปรแกรมคำนวณทางคณิตศาสตร์</h5>
+                            <p class="card-text text-muted small">โปรแกรม Python สำหรับแก้โจทย์สมการ หรือคำนวณพื้นที่รูปทรงเรขาคณิต พร้อม Interface แบบ Text-based...</p>
+                        </div>
+                        <div class="card-footer bg-white border-0 pb-4 ps-4">
+                            <a href="#" class="btn btn-sm btn-outline-primary rounded-pill">ดูรายละเอียด</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card h-100 border-0 shadow-sm overflow-hidden">
+                        <img src="https://via.placeholder.com/400x250?text=Mini+Game" class="card-img-top" alt="IoT Project">
+                        <div class="card-body p-4">
+                            <span class="badge bg-warning text-dark mb-2">Mini Game</span>
+                            <h5 class="card-title fw-bold">เกมทายตัวเลข (Number Guess)</h5>
+                            <p class="card-text text-muted small">มินิโปรเจกต์เกมทายตัวเลข หรือเกมเป่ายิ้งฉุบ ที่เขียนด้วย Logic พื้นฐานของภาษา Python...</p>
+                        </div>
+                        <div class="card-footer bg-white border-0 pb-4 ps-4">
+                            <a href="#" class="btn btn-sm btn-outline-primary rounded-pill">ดูรายละเอียด</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="activity" class="bg-light py-5">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>กิจกรรมและเกียรติบัตร</h2>
+                <div class="line"></div>
+                <p class="text-muted mt-3">การเข้าร่วมอบรมและกิจกรรมเสริมทักษะ</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="bg-white p-4 rounded shadow-sm d-flex align-items-start">
+                        <div class="icon-box flex-shrink-0 bg-primary text-white">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="ms-3">
+                            <h5 class="fw-bold">ค่ายคอมพิวเตอร์ / อบรมออนไลน์</h5>
+                            <p class="text-muted small mb-2">วันที่ได้รับ: DD/MM/YYYY</p>
+                            <p class="mb-0">เข้าร่วมกิจกรรมค่ายพัฒนาทักษะคอมพิวเตอร์ หรือได้รับเกียรติบัตรจากการแข่งขัน...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="bg-white p-4 rounded shadow-sm d-flex align-items-start">
+                        <div class="icon-box flex-shrink-0 bg-success text-white">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <div class="ms-3">
+                            <h5 class="fw-bold">กิจกรรมวิชาการโรงเรียน</h5>
+                            <p class="text-muted small mb-2">วันที่ได้รับ: DD/MM/YYYY</p>
+                            <p class="mb-0">เข้าร่วมจัดนิทรรศการ หรือนำเสนอโครงงานในวันวิทยาศาสตร์...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center" data-aos="zoom-in">
+                    <h2 class="fw-bold mb-4">ติดต่อฉัน (Contact Me)</h2>
+                    <p class="lead mb-5 text-white-50">หากมีข้อสงสัยหรือต้องการพูดคุยเรื่องเทคโนโลยี สามารถติดต่อได้ตามช่องทางด้านล่าง</p>
+                    
+                    <div class="d-flex justify-content-center mb-5">
+                        <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-btn"><i class="fab fa-github"></i></a>
+                        <a href="mailto:email@example.com" class="social-btn"><i class="fas fa-envelope"></i></a>
+                    </div>
+
+                    <div class="card text-dark p-4 border-0 rounded-4 shadow-lg text-start">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label fw-bold">ชื่อของคุณ</label>
+                                    <input type="text" class="form-control" placeholder="ระบุชื่อ">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label fw-bold">อีเมล</label>
+                                    <input type="email" class="form-control" placeholder="name@example.com">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label class="form-label fw-bold">ข้อความ</label>
+                                    <textarea class="form-control" rows="3" placeholder="ข้อความที่ต้องการส่ง..."></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary w-100 fw-bold">ส่งข้อความ</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white py-4 text-center">
+        <div class="container">
+            <p class="mb-0 small">&copy; 2024 Phakkhawat Kromkhuntod. All Rights Reserved.</p>
+            <p class="mb-0 small text-white-50">Portfolio for TCAS / University Admission</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize Animation on Scroll
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+</body>
+</html>
